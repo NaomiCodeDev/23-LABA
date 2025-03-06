@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты поиска - Жмых Эирлайнс</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="search-results.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="SkyConnect Logo">
+            <span>Жмых Эирлайнс</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html#promotions">Акции</a></li>
+                <li><a href="index.html#search">Поиск</a></li>
+                <li><a href="#flight-registration">Регистрация на рейс</a></li>
+                <li><a href="#account">Личный кабинет</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="search-results-section">
+            <div class="search-info">
+                <h2 id="route-header">Результаты поиска</h2>
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label for="time-range">Время вылета:</label>
+                        <div class="time-range-container">
+                            <input type="time" id="time-from" class="time-input">
+                            <span>—</span>
+                            <input type="time" id="time-to" class="time-input">
+                            <button id="apply-time-filter" class="filter-button">Применить</button>
+                        </div>
+                    </div>
+                    <div class="sort-group">
+                        <label for="sort-by">Сортировать по:</label>
+                        <select id="sort-by" class="sort-select">
+                            <option value="default">По умолчанию</option>
+                            <option value="duration">Самый быстрый</option>
+                            <option value="price">Самый дешевый</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outbound Flights -->
+            <div class="flight-direction">
+                <h3 class="direction-header">
+                    <span id="outbound-route">Москва → Санкт-Петербург</span>
+                    <span id="outbound-date">12 марта 2025</span>
+                </h3>
+                <div id="outbound-flights" class="flights-container">
+                    <!-- Flights will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Return Flights (shown only if return date is selected) -->
+            <div id="return-flights-section" class="flight-direction">
+                <h3 class="direction-header">
+                    <span id="return-route">Санкт-Петербург → Москва</span>
+                    <span id="return-date">15 марта 2025</span>
+                </h3>
+                <div id="return-flights" class="flights-container">
+                    <!-- Flights will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="search-summary">
+                <div class="selected-flights">
+                    <div id="selected-outbound" class="selected-flight">
+                        <p>Рейс туда: <span>Не выбран</span></p>
+                    </div>
+                    <div id="selected-return" class="selected-flight">
+                        <p>Рейс обратно: <span>Не выбран</span></p>
+                    </div>
+                </div>
+                <button id="continue-booking" class="continue-button" disabled>Продолжить бронирование</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="SkyConnect Logo">
+                <span>Жмых Эирлайнс</span>
+            </div>
+            <div class="footer-contact">
+                <p>Телефон: <a href="tel:80001234567">+375 (29) 123-45-67</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="search-results.js"></script>
+</body>
+</html>
