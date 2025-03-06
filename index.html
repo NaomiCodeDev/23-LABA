@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyConnect - Умные авиаперелеты</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="SkyConnect Logo">
+            <span>Жмых Эирлайнс</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#promotions">Акции</a></li>
+                <li><a href="#search">Поиск</a></li>
+                <li><a href="#flight-registration">Регистрация на рейс</a></li>
+                <li><a href="#account">Личный кабинет</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Booking System Description -->
+        <section id="booking-system" class="booking-system">
+            <h2>Как работает умное бронирование</h2>
+            <div class="interactive-demo">
+                <div class="simulation-controls">
+                    <div class="control-group">
+                        <label for="flight-date">Дата полета:</label>
+                        <input type="date" id="flight-date">
+                    </div>
+                    <div class="control-group">
+                        <label for="bookings">Количество бронирований:</label>
+                        <input type="number" id="bookings" min="1" max="100" value="45">
+                    </div>
+                </div>
+                <div class="simulation-results">
+                    <div class="progress-circle">
+                        <svg class="progress" viewBox="0 0 120 120">
+                            <circle class="progress-background" cx="60" cy="60" r="54"/>
+                            <circle class="progress-bar" cx="60" cy="60" r="54"/>
+                        </svg>
+                        <div class="progress-text">
+                            <span class="booking-percentage">45%</span>
+                            <span class="discount">0%</span>
+                        </div>
+                    </div>
+                    <div class="status-info">
+                        <p class="flight-status">Статус рейса: <span>Ожидает бронирований</span></p>
+                        <p class="price-info">Текущая цена: <span>100%</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <section id="trust" class="trust-section">
+            <h2>Почему нам не доверяют</h2>
+            <div class="trust-cards">
+                <div class="trust-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Не надежность</h3>
+                    <p>0% гарантия возврата средств при отмене рейса</p>
+                </div>
+                <div class="trust-card">
+                    <i class="fas fa-piggy-bank"></i>
+                    <h3>Большие траты</h3>
+                    <p>До 0,1% скидки при полной загрузке рейса</p>
+                </div>
+                <div class="trust-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Сообщество</h3>
+                    <p>Более 100,000 не довольных пассажиров</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Form -->
+        <section id="search" class="search-section">
+            <h2>Поиск рейсов</h2>
+            <form class="search-form">
+                <div class="form-group">
+                    <label for="departure">Откуда:</label>
+                    <input type="text" id="departure" placeholder="Город или аэропорт">
+                </div>
+                <div class="form-group">
+                    <label for="arrival">Куда:</label>
+                    <input type="text" id="arrival" placeholder="Город или аэропорт">
+                </div>
+                <div class="form-group">
+                    <label for="depart-date">Дата вылета:</label>
+                    <input type="date" id="depart-date">
+                </div>
+                <div class="form-group">
+                    <label for="return-date">Дата возврата:</label>
+                    <input type="date" id="return-date">
+                </div>
+                <div class="form-group">
+                    <label for="passengers">Пассажиры:</label>
+                    <input type="number" id="passengers" min="1" max="8" value="1">
+                </div>
+                <button type="submit" class="search-button">Найти билеты</button>
+            </form>
+        </section>
+
+        <!-- Promotions -->
+        <section id="promotions" class="promotions-section">
+            <h2>Текущие не выгодные акции</h2>
+            <div class="promotions-slider">
+                <div class="promotion-cards">
+                    <!-- Promotion cards will be inserted here by JavaScript -->
+                </div>
+                <div class="slider-controls">
+                    <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section id="newsletter" class="newsletter-section">
+            <h2>Подпишитесь на спам</h2>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Ваш email" required>
+                <button type="submit">Подписаться</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="SkyConnect Logo">
+                <span>Жмых Эирлайнс</span>
+            </div>
+            <div class="footer-contact">
+                <p>Телефон: <a href="tel:80001234567">+375 (29) 123-45-67</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
