@@ -113,29 +113,74 @@ document.querySelector('.prev-slide').addEventListener('click', () => {
 const promotionsContainer = document.querySelector('.promotion-cards');
 promotionsContainer.innerHTML = promotions.map(createPromotionCard).join('');
 
-// Form Validation and Submission
-document.querySelector('.search-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+// Handle the search form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.querySelector('.search-form');
     
-    const departure = document.getElementById('departure').value;
-    const arrival = document.getElementById('arrival').value;
-    const departDate = document.getElementById('depart-date').value;
-    const returnDate = document.getElementById('return-date').value;
-    const passengers = document.getElementById('passengers').value;
-    
-    if (!departure || !arrival || !departDate || !returnDate || !passengers) {
-        alert('Пожалуйста, заполните все поля');
-        return;
-    }
-    
-    // Here you would typically send the form data to a server
-    console.log('Search submitted:', {
-        departure,
-        arrival,
-        departDate,
-        returnDate,
-        passengers
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Gather form data
+        const searchData = {
+            departure: document.getElementById('departure').value,
+            arrival: document.getElementById('arrival').value,
+            departDate: document.getElementById('depart-date').value,
+            returnDate: document.getElementById('return-date').value,
+            passengers: document.getElementById('passengers').value
+        };
+        
+        // Validate form data
+        if (!validateForm(searchData)) {
+            return;
+        }
+        
+        // Store the search data in localStorage
+        localStorage.setItem('flightSearchData', JSON.stringify(searchData));
+        
+        // Redirect to results page
+        window.location.href = 'result/results.html';
     });
+    
+    // Form validation function
+    function validateForm(data) {
+        if (!data.departure) {
+            alert('Пожалуйста, укажите город отправления');
+            return false;
+        }
+        if (!data.arrival) {
+            alert('Пожалуйста, укажите город прибытия');
+            return false;
+        }
+        if (!data.departDate) {
+            alert('Пожалуйста, укажите дату вылета');
+            return false;
+        }
+        if (data.passengers < 1 || data.passengers > 8) {
+            alert('Количество пассажиров должно быть от 1 до 8');
+            return false;
+        }
+        
+        // Validate that departure date is not in the past
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const departDate = new Date(data.departDate);
+        
+        if (departDate < today) {
+            alert('Дата вылета не может быть в прошлом');
+            return false;
+        }
+        
+        // If return date is specified, validate it's after departure date
+        if (data.returnDate) {
+            const returnDate = new Date(data.returnDate);
+            if (returnDate < departDate) {
+                alert('Дата возвращения должна быть после даты вылета');
+                return false;
+            }
+        }
+        
+        return true;
+    }
 });
 
 // Newsletter Form
