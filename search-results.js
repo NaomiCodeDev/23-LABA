@@ -274,6 +274,7 @@ function setupEventListeners() {
     }
 }
 
+
 function filterFlightsByTime(timeFrom, timeTo) {
     if (!timeFrom && !timeTo) {
         showErrorToast('Укажите время для фильтрации');
@@ -519,6 +520,7 @@ function showToast(message, type = 'info') {
         }, 3000);
     }, 100);
 }
+
 
 function showSuccessToast(message) {
     showToast(message, 'success');

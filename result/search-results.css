@@ -30,9 +30,7 @@ body {
 
 /* Search Results Section */
 .search-results-section {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
+    padding-bottom: 120px; /* Adjust this value based on the actual height of .search-summary */
 }
 
 /* Search Information and Filters */
@@ -265,13 +263,20 @@ body {
     color: var(--primary-color);
 }
 
-/* Search Summary */
 .search-summary {
-    background-color: var(--card-background);
+    background-color: #ededed;
     border-radius: var(--radius-lg);
     padding: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 2rem; /* keep this if needed for non-fixed view */
     box-shadow: var(--shadow-md);
+    /* Fixed positioning styles */
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px;
+    z-index: 1000;
 }
 
 .selected-flights {
@@ -420,3 +425,4 @@ body {
         opacity: 1;
     }
 }
+
