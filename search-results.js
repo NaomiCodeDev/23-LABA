@@ -384,18 +384,24 @@ function updateContinueButton() {
 }
 
 function handleContinueBooking() {
+    const searchData = JSON.parse(localStorage.getItem('flightSearchData'));
     const selectedFlights = {
         outbound: getSelectedFlightInfo('outbound-flights'),
         return: getSelectedFlightInfo('return-flights')
     };
     
+    // Ensure we have all the necessary data
+    if (!selectedFlights.outbound || !searchData) {
+        showErrorToast('Пожалуйста, выберите рейс');
+        return;
+    }
+    
     localStorage.setItem('selectedFlights', JSON.stringify(selectedFlights));
     showSuccessToast('Перенаправление на страницу бронирования...');
     
-    // Simulate redirect to booking page
+    // Redirect to booking page
     setTimeout(() => {
-        alert('Переход к оформлению бронирования...\n\nВыбранные рейсы:\n' + 
-              formatSelectedFlightsForDisplay(selectedFlights));
+        window.location.href = 'booking-page.html';
     }, 1500);
 }
 

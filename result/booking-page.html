@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление бронирования | Жмых Эирлайнс</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="booking-page.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <div class="logo">
+                    <img src="../images/logo.png" alt="Жмых Эирлайнс">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../main-page.html">Главная</a></li>
+                    <li><a href="#">Спецпредложения</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="booking-header">
+            <h1>Оформление бронирования</h1>
+            <p>Для завершения бронирования, пожалуйста, заполните информацию о пассажирах</p>
+        </div>
+
+        <section class="booking-summary">
+            <h2>Информация о рейсе</h2>
+            <div class="flight-info-container">
+                <div class="flight-info outbound">
+                    <h3>Рейс туда</h3>
+                    <div id="outbound-flight-details">
+                        <!-- This will be filled by JavaScript -->
+                    </div>
+                </div>
+                <div class="flight-info return" id="return-flight-container">
+                    <h3>Рейс обратно</h3>
+                    <div id="return-flight-details">
+                        <!-- This will be filled by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <div class="booking-price">
+                <div class="price-label">Итоговая стоимость:</div>
+                <div class="price-value" id="total-price">0 BYN</div>
+            </div>
+        </section>
+
+        <section class="passengers-section">
+            <div class="section-header">
+                <h2>Информация о пассажирах</h2>
+                <span id="passenger-count">0 из <span id="max-passengers">0</span> пассажиров</span>
+            </div>
+
+            <div class="passenger-list" id="passenger-list">
+                <!-- Passenger cards will be added here by JavaScript -->
+            </div>
+
+            <div class="add-passenger-container">
+                <button id="add-passenger-btn" class="primary-button">Добавить пассажира</button>
+            </div>
+        </section>
+
+        <div class="booking-actions">
+            <button id="clear-all-btn" class="secondary-button">Очистить все данные</button>
+            <button id="confirm-booking-btn" class="primary-button" disabled>Подтвердить бронирование</button>
+        </div>
+
+        <!-- Passenger Form Modal -->
+        <div id="passenger-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="passenger-form-title">Добавить пассажира</h2>
+                
+                <form id="passenger-form">
+                    <input type="hidden" id="passenger-index" value="-1">
+                    
+                    <div class="form-group">
+                        <label for="first-name">Имя*</label>
+                        <input type="text" id="first-name" name="firstName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="last-name">Фамилия*</label>
+                        <input type="text" id="last-name" name="lastName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthdate">Дата рождения*</label>
+                        <input type="date" id="birthdate" name="birthdate" required>
+                        <div class="error-message" id="birthdate-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="document-type-toggle">
+                            <label>
+                                <input type="radio" name="documentType" value="passport" checked>
+                                Паспорт
+                            </label>
+                            <label>
+                                <input type="radio" name="documentType" value="other">
+                                Иной документ
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="passport-group">
+                        <label for="passport-number">Номер паспорта* (формат: AB1234567)</label>
+                        <input type="text" id="passport-number" name="passportNumber" pattern="[A-Z]{2}[0-9]{7}" 
+                            placeholder="AB1234567" maxlength="9">
+                        <div class="error-message" id="passport-error"></div>
+                    </div>
+                    
+                    <div class="form-group" id="other-document-group" style="display: none;">
+                        <label for="document-type">Тип документа*</label>
+                        <select id="document-type" name="otherDocumentType">
+                            <option value="id-card">Удостоверение личности</option>
+                            <option value="birth-certificate">Свидетельство о рождении</option>
+                            <option value="residence-permit">Вид на жительство</option>
+                            <option value="other">Другое</option>
+                        </select>
+                        
+                        <label for="document-number">Номер документа*</label>
+                        <input type="text" id="document-number" name="otherDocumentNumber">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="cancel-passenger">Отмена</button>
+                        <button type="submit" id="save-passenger">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+            
+            <div class="seat-selection-actions">
+                <button id="cancel-seat-selection" class="secondary-button">Отмена</button>
+                <button id="confirm-seat-selection" class="primary-button">Подтвердить</button>
+                <button id="auto-select-seat" class="secondary-button">Выбрать автоматически</button>
+            </div>
+        </div>
+    </div>
+</div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/logo.png" alt="Жмых Эирлайнс">
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>О компании</h3>
+                        <ul>
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">Наш флот</a></li>
+                            <li><a href="#">Карьера</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Информация</h3>
+                        <ul>
+                            <li><a href="#">Правила перевозки</a></li>
+                            <li><a href="#">Часто задаваемые вопросы</a></li>
+                            <li><a href="#">Правовая информация</a></li>
+                            <li><a href="#">Политика конфиденциальности</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Обратная связь</h3>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Ваш email">
+                            <button type="submit">Подписаться</button>
+                        </form>
+                        <div class="social-links">
+                            <a href="#" class="social-icon">FB</a>
+                            <a href="#" class="social-icon">IG</a>
+                            <a href="#" class="social-icon">TW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Жмых Эирлайнс. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="booking-page.js"></script>
+</body>
+</html>

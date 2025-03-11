@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление бронированием | Жмых Эирлайнс</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="booking-page.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <div class="logo">
+                    <img src="../images/logo.png" alt="Жмых Эирлайнс">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../main-page.html">Главная</a></li>
+                    <li><a href="#">Спецпредложения</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="booking-header">
+            <h1>Управление бронированием</h1>
+            <div class="booking-code-container">
+                <span>Код бронирования: </span>
+                <span id="booking-code" class="booking-code">--</span>
+            </div>
+        </div>
+
+        <section class="booking-summary">
+            <h2>Информация о рейсе</h2>
+            <div class="flight-info-container">
+                <div class="flight-info outbound">
+                    <h3>Рейс туда</h3>
+                    <div id="outbound-flight-details">
+                        <!-- This will be filled by JavaScript -->
+                    </div>
+                </div>
+                <div class="flight-info return" id="return-flight-container">
+                    <h3>Рейс обратно</h3>
+                    <div id="return-flight-details">
+                        <!-- This will be filled by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <div class="booking-price">
+                <div class="price-label">Итоговая стоимость:</div>
+                <div class="price-value" id="total-price">0 BYN</div>
+            </div>
+        </section>
+
+        <section class="passengers-section">
+            <div class="section-header">
+                <h2>Информация о пассажирах</h2>
+            </div>
+
+            <div class="passenger-details" id="passenger-details">
+                <!-- Passenger details will be added here by JavaScript -->
+            </div>
+        </section>
+
+        <div class="booking-actions">
+            <button id="confirm-final-booking" class="primary-button">Подтвердить бронирование</button>
+        </div>
+
+        <!-- Seat Selection Modal -->
+        <div id="seat-selection-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Выбор места в самолете</h2>
+                <div class="passenger-info-header" id="seat-passenger-info">
+                    <!-- Passenger info will be inserted here -->
+                </div>
+                
+                <div class="airplane-layout">
+                    <div class="airplane-header">
+                        <div class="header-label">Передняя часть самолета</div>
+                    </div>
+                    
+                    <div class="seats-container">
+                        <div class="seat-labels">
+                            <div class="row-label">А</div>
+                            <div class="row-label">B</div>
+                            <div class="row-label">C</div>
+                            <div class="aisle"></div>
+                            <div class="row-label">D</div>
+                            <div class="row-label">E</div>
+                            <div class="row-label">F</div>
+                        </div>
+                        
+                        <div class="seats-grid" id="seats-grid">
+                            <!-- Seats will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="seat-legend">
+                        <div class="legend-item">
+                            <div class="seat-sample available"></div>
+                            <span>Доступно</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="seat-sample selected"></div>
+                            <span>Выбрано</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="seat-sample occupied"></div>
+                            <span>Занято</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button id="auto-select-seat" class="secondary-button">Выбрать автоматически</button>
+                    <button id="confirm-seat-selection" class="primary-button">Подтвердить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Confirmation Modal -->
+        <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Подтверждение бронирования</h2>
+                
+                <div class="confirmation-message">
+                    <p>Пожалуйста, проверьте, что вся информация корректна:</p>
+                </div>
+                
+                <div class="confirmation-details" id="confirmation-details">
+                    <!-- Booking details will be inserted here -->
+                </div>
+                
+                <div class="modal-actions">
+                    <button id="edit-booking" class="secondary-button">Редактировать</button>
+                    <button id="final-confirm" class="primary-button">Подтвердить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal">
+            <div class="modal-content success-content">
+                <h2>Бронирование успешно завершено!</h2>
+                
+                <div class="success-message">
+                    <div class="success-icon">✓</div>
+                    <p>Ваш код бронирования: <strong id="final-booking-code">--</strong></p>
+                    <p>Информация о бронировании была отправлена на ваш email.</p>
+                </div>
+                
+                <div class="modal-actions">
+                    <button id="return-to-homepage" class="primary-button">Вернуться на главную</button>
+                    <button id="download-ticket" class="secondary-button">Скачать билет</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/logo.png" alt="Жмых Эирлайнс">
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Информация</h3>
+                        <ul>
+                            <li><a href="#">О компании</a></li>
+                            <li><a href="#">Новости</a></li>
+                            <li><a href="#">Вакансии</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Поддержка</h3>
+                        <ul>
+                            <li><a href="#">Помощь</a></li>
+                            <li><a href="#">Контакты</a></li>
+                            <li><a href="#">Обратная связь</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Правовая информация</h3>
+                        <ul>
+                            <li><a href="#">Условия использования</a></li>
+                            <li><a href="#">Политика конфиденциальности</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 Жмых Эирлайнс. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript files -->
+    <script src="../common.js"></script>
+    <script src="booking-data.js"></script>
+    <script src="booking.js"></script>
+</body>
+</html>
